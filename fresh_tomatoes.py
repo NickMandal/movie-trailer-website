@@ -39,10 +39,7 @@ main_page_head = '''
             margin-bottom: 20px;
             padding-top: 20px;
         }
-        .movie-tile:hover {
-            background-color: #EEE;
-            cursor: pointer;
-        }
+
         .scale-media {
             padding-bottom: 56.25%;
             position: relative;
@@ -56,6 +53,27 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+        .modal {
+          text-align: center;
+        }
+
+        @media screen and (min-width: 768px) { 
+          .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+          }
+        }
+        .modal-dialog {
+          display: inline-block;
+          text-align: left;
+          vertical-align: middle;
+        }
+        #title {
+            display: inline-block;
+        }
+
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -65,7 +83,7 @@ main_page_head = '''
             $("#trailer-video-container").empty();
         });
         // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
+        $(document).on('click', '.trailer', function (event) {
             var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
             var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
             $("#trailer-video-container").empty().append($("<iframe></iframe>", {
@@ -80,6 +98,12 @@ main_page_head = '''
           $('.movie-tile').hide().first().show("fast", function showNext() {
             $(this).next("div").show("fast", showNext);
           });
+        });
+        // Show movie information when the movieInfo modal is opened
+        $(document).ready(function(){
+            $("#movieInfo").click(function(){
+                $("#info").modal();
+            });
         });
     </script>
 </head>
@@ -122,10 +146,62 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center">
+    <h2>{movie_title} <div class="lead">({movie_release_year})</div></h2>
     <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+    <h3>
+    <span style="font-size:0.8em;"class="glyphicon glyphicon-star" aria-hidden="true"></span> {movie_rating}
+    </h3>
+    <button type="button" class="btn btn-danger trailer" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">Watch Trailer</button>
+    <button type="button" class="btn btn-info" id="movieInfo">Movie Information</button>
+        
+    <!-- Movie Information Modal -->
+    <div class="modal fade" id="info" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align: center;">
+                    <div id="title"><h3 class="modal-title">{movie_title}</h3></div>
+                    <div id="title"><h3 style="opacity: 0.6; font-size: 1.2em; font-weight: 400;">({movie_release_year})</h3></div>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-4">
+                        <img src="{poster_image_url}" class="img-responsive" width="220" height="342">
+                    </div>
+                    <div class="col-xs-8">
+                        <p>
+                            <strong>
+                                <bdi>Overview: </bdi>
+                            </strong>
+                            {movie_overview}
+                        </p>
+                        <p>
+                            <strong>
+                                <bdi>Genre: </bdi>
+                            </strong>
+                            {movie_genre}
+                        </p>
+                        <p>
+                            <strong>
+                                <bdi>Rating: </bdi>
+                            </strong>
+                            {content_rating}
+                        </p>
+                        <p>
+                            <strong>
+                                <bdi>Runtime: </bdi>
+                            </strong>
+                            {movie_runtime} minutes
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 '''
 
 
@@ -144,8 +220,14 @@ def create_movie_tiles_content(movies):
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
             movie_title=movie.title,
+            movie_overview=movie.storyline,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+            movie_runtime=movie.movie_duration,
+            movie_genre=movie.movie_genre,
+            content_rating=movie.rating,
+            movie_rating=movie.movie_rating,
+            movie_release_year=movie.release_year
         )
     return content
 
