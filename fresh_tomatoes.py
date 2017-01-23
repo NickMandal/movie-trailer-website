@@ -99,12 +99,6 @@ main_page_head = '''
             $(this).next("div").show("fast", showNext);
           });
         });
-        // Show movie information when the movieInfo modal is opened
-        $(document).ready(function(){
-            $("#movieInfo").click(function(){
-                $("#info").modal();
-            });
-        });
     </script>
 </head>
 '''
@@ -153,15 +147,16 @@ movie_tile_content = '''
     <span style="font-size:0.8em;"class="glyphicon glyphicon-star" aria-hidden="true"></span> {movie_rating}
     </h3>
     <button type="button" class="btn btn-danger trailer" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">Watch Trailer</button>
-    <button type="button" class="btn btn-info" id="movieInfo">Movie Information</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" id="movieInfo">Movie Information</button>
         
     <!-- Movie Information Modal -->
-    <div class="modal fade" id="info" role="dialog">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="text-align: center;">
-                    <div id="title"><h3 class="modal-title">{movie_title}</h3></div>
-                    <div id="title"><h3 style="opacity: 0.6; font-size: 1.2em; font-weight: 400;">({movie_release_year})</h3></div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <div id="title"><h3 class="modal-title">{movie_title}</h3></div>
+                  <div id="title"><h3 style="opacity: 0.6; font-size: 1.2em; font-weight: 400;">({movie_release_year})</h3></div>
                 </div>
                 <div class="modal-body">
                     <div class="col-xs-4">
@@ -195,7 +190,7 @@ movie_tile_content = '''
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
