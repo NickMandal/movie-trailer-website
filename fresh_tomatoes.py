@@ -18,32 +18,7 @@ main_page_head = '''
     <link rel="stylesheet" href="styles.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" charset="utf-8">
-        // Pause the video when the modal is closed
-        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is the only
-            // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
-        });
-        // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.trailer', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
-        });
-        // Animate in the movies when the page loads
-        $(document).ready(function () {
-          $('.movie-tile').hide().first().show("fast", function showNext() {
-            $(this).next("div").show("fast", showNext);
-          });
-        });
-    </script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
 '''
 
@@ -91,10 +66,10 @@ movie_tile_content = '''
     <span style="font-size:0.8em;"class="glyphicon glyphicon-star" aria-hidden="true"></span> {movie_rating}
     </h3>
     <button type="button" class="btn btn-danger trailer" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">Watch Trailer</button>
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" id="movieInfo">Movie Information</button>
-        
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{trailer_youtube_id}" id="movieInfo">Movie Information</button>    
+
     <!-- Movie Information Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="{trailer_youtube_id}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="text-align: center;">
@@ -102,11 +77,11 @@ movie_tile_content = '''
                   <div id="title"><h3 class="modal-title">{movie_title}</h3></div>
                   <div id="title"><h3 style="opacity: 0.6; font-size: 1.2em; font-weight: 400;">({movie_release_year})</h3></div>
                 </div>
-                <div class="modal-body">
-                    <div class="col-xs-4">
+                <div class="modal-body row">
+                    <div class="col-xs-5">
                         <img src="{poster_image_url}" class="img-responsive" width="220" height="342">
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-7">
                         <p>
                             <strong>
                                 <bdi>Overview: </bdi>

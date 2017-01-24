@@ -3,7 +3,7 @@ import json
 import media
 import requests
 
-# Pulls information from tmdb and parses it to get desired information
+# Pulls information from tmdb and parses JSON file to get desired information
 def create_movie(id):
   image_url = "https://image.tmdb.org/t/p/w500"
   trailer_url= "https://www.youtube.com/watch?v="
@@ -23,7 +23,7 @@ def create_movie(id):
                       content_rating, rating, release_date)
   return movie
 
-# Creates the movies by passing in tmdb number
+# Creates the movies by hard-coding in the Movie Database number
 concussion = create_movie(321741)
 why_him = create_movie(356305)
 suicide_squad = create_movie(297761)
@@ -31,12 +31,12 @@ the_social_network = create_movie(37799)
 dope = create_movie(308639)
 end_of_watch = create_movie(77016)
 i_am_legend = create_movie(6479)
-the_imitation_game = create_movie(205596)
-snowden = create_movie(302401)
+gone_girl = create_movie(210577)
+the_revenant = create_movie(281957)
 
 # Create an array of all the movies
 movies = [concussion, why_him, suicide_squad, the_social_network, dope, 
-end_of_watch, i_am_legend, the_imitation_game, snowden]
+end_of_watch, i_am_legend, gone_girl, the_revenant]
 
 # Pass the movies into the webpage
 fresh_tomatoes.open_movies_page(movies)
