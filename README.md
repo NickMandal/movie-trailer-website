@@ -2,6 +2,7 @@
 
 I have written server-side code to store a list of some of my favorite movies, including their box art imagery, a movie trailer URL, and much more. 
 The movie data is provided by [The Movie Database (TMDb) API](https://www.themoviedb.org/)
+
 To view a live demo, click [here](https://nickmandal.github.io/movie-trailer-website/)
 
 ## Getting Started
