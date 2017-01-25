@@ -33,7 +33,7 @@ To update the script to the latest version, enter the `movie-trailer-website` fo
   - jQuery 1.10.1
 
 ## Help
-If you have any questions or comments, please [open an issue on GitHub](https://github.com/nickmandal/movie-trailer-website/issues) or [contact me](http://nickmandal.com/about).
+If you have any questions or comments, please [open an issue on GitHub](https://github.com/nickmandal/movie-trailer-website/issues) or [contact me](http://nickmandal.com/contact).
 
 
 
