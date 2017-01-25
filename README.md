@@ -28,9 +28,18 @@ To update the script to the latest version, enter the `movie-trailer-website` fo
 
     git pull
     
-  
+## Third-party code
+* Libraries and frameworks
+  - Bootstrap v3.3.2
+  - jQuery v1.11.2
+* fresh_tomatoes.py uses:
+  - a modified version of the Bootstrap Basic Template from http://getbootstrap.com/getting-started/
+  - a modified version of the $(document).ready function from https://s3.amazonaws.com/udacity-hosted-downloads/ud036/fresh_tomatoes.py
+  - a modified version of the modal dialogue template from http://www.sitepoint.com/understanding-bootstrap-modals/
+  - code for embedded youtube player: https://developers.google.com/youtube/player_parameters#Embedding_a_Player    
+
 ## Help
-If you have any questions or comments, please [open an issue on GitHub](https://github.com/nickmandal/movie-trailer-website/issues) or [contact me](https://nickmandal.com/about/).
+If you have any questions or comments, please [open an issue on GitHub](https://github.com/nickmandal/movie-trailer-website/issues) or [contact me](http://nickmandal.com/about).
 
 
 
