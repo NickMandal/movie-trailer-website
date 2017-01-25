@@ -10,17 +10,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Requirements
 * [Python 2.x](https://www.python.org/downloads/)
-* [pip](https://pip.pypa.io/en/stable/installing/)
 * [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (recommended)
 
 ## Installation
-First, make sure you have [Python 2.x](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your machine.
+First, make sure you have [Python 2.x](https://www.python.org/downloads/) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your machine.
 
 Run the following in your command prompt to install:
 
     git clone https://github.com/nickmandal/movie-trailer-website.git
     cd movie-trailer-website
-    pip install -r requirements.txt
+    python entertainment_center.py
 
 To install without git, [download the source code from GitHub](https://github.com/nickmandal/movie-trailer-website/archive/master.zip), extract the archive, and follow the steps above beginning from the second line.
 
