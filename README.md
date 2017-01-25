@@ -28,10 +28,9 @@ To update the script to the latest version, enter the `movie-trailer-website` fo
 
     git pull
     
-## Third-party code
-* Libraries and frameworks
-  - Bootstrap v3.3.2
-  - jQuery v1.11.2
+## Built With
+  - Bootstrap 3.1.0
+  - jQuery 1.10.1
 
 ## Help
 If you have any questions or comments, please [open an issue on GitHub](https://github.com/nickmandal/movie-trailer-website/issues) or [contact me](http://nickmandal.com/about).
